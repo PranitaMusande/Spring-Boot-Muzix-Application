@@ -55,19 +55,17 @@ public class TrackServiceTest
 
     }
 
-    @Test(expected = TrackAlreadyExistsException.class)
-    public void saveUserTestFailure() throws TrackAlreadyExistsException {
-        when(trackRepository.save((Track)any())).thenReturn(track);
-        Track savedTrack = trackService.addMusic(track);
-       // System.out.println("savedTrack" + savedTrack);
-        Assert.assertEquals("TrackAlreadyExistsException",savedTrack);
 
-//       doThrow(new TrackAlreadyExistsException()).when(trackRepository).getTrackByName(eq("Tu hi re"));
-//       trackService.addMusic(track);
+    @Test
+    public void saveUserTestFailure()
+    {
+        Track testTrack=new Track(1,"Tu hi re","Good");
+        trackRepository.save(testTrack);
+        Assert.assertEquals(track,testTrack);
     }
 
     @Test
-    public void getAllUser(){
+    public void getAllUser() {
 
         trackRepository.save(track);
         //stubbing the mock to return specific data
